@@ -1,19 +1,28 @@
 from turtle import Screen, Turtle
 X_COORDINATES = [0, -20, -40]
 DISTANCE_TO_BE_COVERED = 20
+STARTING_COORDINATES = [(0, 0), (-20, 0), (-40, 0)]
+
 
 class Snake:
     def __init__(self):
         self.Snake_length = []
         self.create_snake()
         self.head = self.Snake_length[0]
+
     def create_snake(self):
-        for i in range(0, 3):
-            tim = Turtle(shape="square")
-            tim.color("white")
-            tim.penup()
-            tim.goto(y=0, x=X_COORDINATES[i])
-            self.Snake_length.append(tim)
+        for position in STARTING_COORDINATES:
+            self.add(position)
+
+    def add(self, position):
+        tim = Turtle("square")
+        tim.color("white")
+        tim.penup()
+        tim.goto(position)
+        self.Snake_length.append(tim)
+
+    def extend(self):
+        self.add(self.Snake_length[-1].position())
 
     def movement(self):
         for length in range(len(self.Snake_length) - 1, 0, -1):
