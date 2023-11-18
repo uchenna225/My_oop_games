@@ -40,6 +40,13 @@ class Snake:
         if self.head.heading() != 90:
             self.head.setheading(270)
 
+    def reset(self):
+        for snake in self.Snake_length:
+            snake.goto(1000, 1000)
+        self.Snake_length.clear()
+        self.create_snake()
+        self.head = self.Snake_length[0]
+
     def right(self):
         if self.head.heading() != 180:
             self.head.setheading(0)

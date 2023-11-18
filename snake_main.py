@@ -38,15 +38,15 @@ while Game_on:
 
     # Game_over
     if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
-        Game_on = False
-        score.game()
+        score.reset()
+        snake.reset()
 
     # BODY_COLLISION
         for body in snake.Snake_length[1:]:
-            if snake.head.distance(body) < 15:
-                Game_on = False
-                score.game()
-
+            if body == snake.head:
+                pass
+            elif snake.head.distance(body) < 15:
+                score.reset()
 
 Screen.exitonclick()
 
